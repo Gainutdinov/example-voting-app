@@ -48,7 +48,6 @@ pipeline {
       stage('worker docker-package'){
           agent any
           when{
-            changeset "**/worker/**"
             branch "master"
           }
           steps{
@@ -91,7 +90,6 @@ pipeline {
       stage('result docker-package'){
           agent any
           when{
-            changeset "**/result/**"
             branch "master"
           }
           steps{
