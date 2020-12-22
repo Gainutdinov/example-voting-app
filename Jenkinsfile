@@ -132,10 +132,9 @@ pipeline {
           }
         }
       }
-      stage('docker-package'){
+      stage('vote docker-package'){
           agent any
           when{
-            changeset "**/vote/**"
             branch "master"
           }
           steps{
