@@ -128,7 +128,21 @@ pipeline {
         steps{
           echo 'Running Unit Tets on vote app..'
           dir('vote'){
-            sh 'pip install -r requirements.txt && nosetests -v'
+            sh 'pip install -r requirements.txt'
+            sh 'nosetests -v'
+          }
+        }
+      }
+      stage('vote integration'){
+        agent any
+        when{
+          changeset "**/vote/**"
+          branch "master"
+        }
+        steps{
+          echo 'Running Integration Tets on vote app..'
+          dir('vote'){
+            sh 'integration_test.sh'
           }
         }
       }
